@@ -5,7 +5,7 @@
  *
  * @author Felipe Pieretti Umpierre
  */
-Route::prefix(["prefix" => "api"], function() {
+Route::group(["prefix" => "api"], function() {
 
     /**
      * Insert a new order
@@ -31,7 +31,7 @@ Route::prefix(["prefix" => "api"], function() {
     /**
      * Get the menu list
      */
-    Route::get("menu", function() {
+    Route::get("/menu", function() {
 
     });
 
