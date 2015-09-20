@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Requests extends Model
+class ProductsIngredients extends Model
 {
     public function products()
     {
         return $this->hasMany('Products', 'id', 'products_id');
     }
 
-    public function board()
+    public function ingredients()
     {
-        return $this->hasMany('Boards', 'id', 'boards_id');
+        return $this->hasMany('Ingredients', 'id', 'ingredients_id');
     }
 }

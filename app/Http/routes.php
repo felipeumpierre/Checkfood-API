@@ -1,5 +1,8 @@
 <?php
 
+use App\Products;
+use App\Requests;
+
 /**
  * API 1.0
  *
@@ -24,15 +27,19 @@ Route::group(["prefix" => "api"], function() {
     /**
      * Get information from an order
      */
-    Route::get("/order/{id}", function($id) {
+    Route::get("/order/{boardsId}", function($boardsId) {
+        $request = Requests::where('boards_id', $boardsId)->get();
 
+        return Response::json($request);
     });
 
     /**
      * Get the menu list
      */
     Route::get("/menu", function() {
+        $products = Products::all();
 
+        return Response::json($products);
     });
 
 });
