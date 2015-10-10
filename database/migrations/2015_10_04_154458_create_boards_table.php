@@ -5,6 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateBoardsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -28,4 +29,5 @@ class CreateBoardsTable extends Migration
     {
         Schema::drop('boards');
     }
+
 }

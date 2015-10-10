@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 
 class BoardsSeeder extends Seeder
 {
+    private $table = 'boards';
+
     /**
      * Run the database seeds.
      *
@@ -11,7 +13,7 @@ class BoardsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('boards')->truncate();
+        DB::table($this->table)->truncate();
 
         $fillable = [
             ['number' => 1, 'created_at' => Carbon\Carbon::now()],
@@ -23,7 +25,7 @@ class BoardsSeeder extends Seeder
         ];
 
         foreach ($fillable as $key => $val) {
-            DB::table('boards')->insert($val);
+            DB::table($this->table)->insert($val);
         }
     }
 }

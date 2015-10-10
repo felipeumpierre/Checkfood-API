@@ -3,8 +3,9 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequestsTable extends Migration
+class CreateProductsIngredientsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -12,11 +13,10 @@ class CreateRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requests', function (Blueprint $table) {
-            $table->increments('id');
-            $table->decimal('unity_price', 10, 2);
-            $table->integer('quantity');
-            $table->decimal('total_price', 10, 2);
+        Schema::create('products_ingredients', function (Blueprint $table) {
+			$table->increments('id');
+            $table->unsignedInteger('products_id');
+            $table->unsignedInteger('ingredients_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,7 @@ class CreateRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('requests');
+        Schema::drop('products_ingredients');
     }
+
 }

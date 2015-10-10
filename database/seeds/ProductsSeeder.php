@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 
 class ProductsSeeder extends Seeder
 {
+    private $table = 'products';
+
     /**
      * Run the database seeds.
      *
@@ -11,29 +13,15 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('products')->truncate();
-        DB::table('categories')->truncate();
+        DB::table($this->table)->truncate();
 
-        // ---
-        // Categories
-        $categories = [
-            ['name' => 'Bebidas', 'created_at' => Carbon\Carbon::now()],
-            ['name' => 'Saladas', 'created_at' => Carbon\Carbon::now()]
-        ];
-
-        foreach ($categories as $key => $val) {
-            DB::table('categories')->insert($val);
-        }
-
-        // ----
-        // Products
-        $products = [
+        $fillable = [
             ['categories_id' => 1, 'name' => 'Coca-cola', 'description' => 'refrigerante', 'price' => 3.00, 'stock' => 100, 'created_at' => Carbon\Carbon::now()], // bebidas
             ['categories_id' => 2, 'name' => 'Alface', 'description' => 'Alface verde', 'price' => 0.74, 'stock' => 24, 'created_at' => Carbon\Carbon::now()] // saladas
         ];
 
-        foreach ($products as $key => $val) {
-            DB::table('products')->insert($val);
+        foreach ($fillable as $key => $val) {
+            DB::table($this->table)->insert($val);
         }
     }
 }

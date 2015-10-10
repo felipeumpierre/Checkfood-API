@@ -3,8 +3,9 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIngredientsTable extends Migration
+class CreateRequestsObservationsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -12,9 +13,10 @@ class CreateIngredientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('boards', function (Blueprint $table) {
+        Schema::create('requests_observations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 65);
+            $table->unsignedInteger('requests_products_id');
+            $table->text('observation');
             $table->timestamps();
         });
     }
@@ -26,6 +28,7 @@ class CreateIngredientsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ingredients');
+        Schema::drop('requests_observations');
     }
+
 }
