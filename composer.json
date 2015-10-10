@@ -1,6 +1,6 @@
 {
   "name": "Checkfood API",
-  "description": "Checkfood API the way to manage your restaurant, where the user has the total independence to request.",
+  "description": "Checkfood: the way to manage your restaurant, where the user has the total independence to request.",
   "keywords": [
     "checkfood",
     "laravel",
