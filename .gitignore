@@ -5,3 +5,5 @@ Homestead.json
 .env
 .idea
 .idea/*
+/.idea
+.DS_Store
