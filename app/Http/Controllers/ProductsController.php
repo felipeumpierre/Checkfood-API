@@ -13,14 +13,18 @@ class ProductsController extends Controller
     use ProductsTrait;
 
     /**
-     * Get the product
+     * Get the product with ingredients and category
      *
      * @param int $id product id
      * @return json
      */
     public function index($id)
     {
-        return Response::json(Products::find($id) ?: [
+        $products = Products::find($id);
+
+        $this->addProductsListsCollection($products, ['ingredients', 'category']);
+
+        return Response::json($products ?: [
             'message' => 'error to find product. Check if is the correct product.',
             'return' => null,
         ]);
