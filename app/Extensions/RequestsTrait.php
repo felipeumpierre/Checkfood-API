@@ -77,13 +77,13 @@ trait RequestsTrait
     {
         // Loop through the products array
         // attach to this request
-        foreach ($products as $productKey => $productId) {
+        foreach ($products as $productKey => $productInformation) {
             // Search for the product
             // if not found, fail
-            $product = Products::findOrFail($productId);
+            $product = Products::findOrFail($productInformation->id);
 
-            // Default value
-            $quantity = 1;
+            // Quantity
+            $quantity = $productInformation->quantity;
 
             // Attach product and others parameters
             // into requests_products table
