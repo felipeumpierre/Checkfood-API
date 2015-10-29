@@ -3,6 +3,7 @@
 use App\Boards;
 use App\Products;
 use App\Requests;
+use App\RequestsObservation;
 use App\Status;
 
 trait RequestsTrait
@@ -96,5 +97,33 @@ trait RequestsTrait
 
         // Save the request, with the attach
         $request->save();
+
+        $this->insertObservationInProductRequest($request, $products);
+    }
+
+    /**
+     * Insert the observation to the request_product
+     *
+     * @param Requests $request
+     * @param array $products
+     */
+    public function insertObservationInProductRequest(Requests $request, array $products)
+    {
+        foreach ($products as $productKey => $productInformation) {
+            // Check if the observation is empty or null
+            if (empty($productInformation->observation) || is_null($productInformation->observation)) {
+                continue;
+            }
+
+            // Search for the product that was inserted in the function
+            // @see attachProducts()
+            $productRequest = $request->products()->find($productInformation->id);
+
+            // Create the RequestsObservations instance
+            $requestsObservations = new RequestsObservation();
+            $requestsObservations->requests_products_id = $productRequest->pivot->id;
+            $requestsObservations->observation = $productInformation->observation;
+            $requestsObservations->save();
+        }
     }
 }
