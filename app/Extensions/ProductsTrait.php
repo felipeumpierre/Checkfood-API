@@ -26,9 +26,12 @@ trait ProductsTrait
      *
      * @param Products $product
      * @param string $function
+     * @return $this
      */
     public function addProductLists(Products &$product, $function)
     {
         $product->{$function}->lists('id', 'name');
+
+        return $this;
     }
 }
