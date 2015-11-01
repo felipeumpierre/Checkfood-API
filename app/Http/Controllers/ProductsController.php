@@ -22,7 +22,7 @@ class ProductsController extends Controller
     {
         $products = Products::find($id);
 
-        $this->addProductsListsCollection($products, ['ingredients', 'category']);
+        $this->addProductLists($products, 'ingredients')->addProductLists($products, 'category');
 
         return Response::json($products ?: [
             'message' => 'error to find product. Check if is the correct product.',
