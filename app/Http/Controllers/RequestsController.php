@@ -31,7 +31,7 @@ class RequestsController extends Controller
 
         // add the ingredients and category to $products Collection
         $this->addProductsListsCollection($products, ['ingredients', 'category']);
-        dd($products);
+
         return Response::json($products ?: [
             'message' => 'no products founded to this board.',
             'return' => null,
