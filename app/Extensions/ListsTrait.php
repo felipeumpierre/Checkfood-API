@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Collection;
 use App\Products;
+use Illuminate\Database\Eloquent\Model;
 
 trait ListsTrait
 {
@@ -11,7 +12,7 @@ trait ListsTrait
      * @param Collection $collection
      * @param array $functions
      */
-    public function addProductsListsCollection(Collection &$collection, array $functions)
+    public function addListsCollection(Collection &$collection, array $functions)
     {
         // loop through the Collection
         foreach ($collection as $key => $product) {
