@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Collection;
 use App\Products;
 
-trait ProductsTrait
+trait ListsTrait
 {
     /**
      * Loop through the Collection and call the productLists function
@@ -16,7 +16,7 @@ trait ProductsTrait
         // loop through the Collection
         foreach ($collection as $key => $product) {
             foreach ($functions as $function) {
-                $this->addProductLists($product, $function);
+                $this->addLists($product, $function);
             }
         }
     }
@@ -24,13 +24,13 @@ trait ProductsTrait
     /**
      * Add the relationship to a Product object
      *
-     * @param Products $product
+     * @param Model $model
      * @param string $function
      * @return $this
      */
-    public function addProductLists(Products &$product, $function)
+    public function addLists(Model &$model, $function)
     {
-        $product->{$function}->lists('id', 'name');
+        $model->{$function}->lists('id', 'name');
 
         return $this;
     }
