@@ -19,8 +19,12 @@ Route::group(['prefix' => 'api'], function () {
 
     // Board
     Route::get('/board/{id}', 'BoardsController@index');
+    Route::get('/boards', 'BoardsController@all');
 
     // Category
     Route::get('/category/{id}', 'CategoriesController@index');
     Route::get('/category/{id}/products', 'CategoriesController@products');
+
+    // Opinion
+    Route::post('/opinion', 'OpinionsController@add');
 });
