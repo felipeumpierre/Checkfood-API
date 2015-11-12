@@ -11,7 +11,7 @@ class OpinionsController extends Controller
 {
     public function add()
     {
-        $opinion = json_decode(Input::get('products'));
+        $opinion = json_decode(Input::get('opinion'));
 
         try {
             $newOpinion = new Opinions($opinion);

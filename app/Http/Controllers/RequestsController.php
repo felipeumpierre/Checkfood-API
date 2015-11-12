@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Extensions\ProductsTrait;
+use App\Extensions\ListsTrait;
 use App\Extensions\RequestsTrait;
 use App\Requests;
 use Illuminate\Support\Facades\Input;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Response;
 
 class RequestsController extends Controller
 {
-    use ProductsTrait;
+    use ListsTrait;
     use RequestsTrait;
 
     /**
@@ -30,7 +30,7 @@ class RequestsController extends Controller
         }
 
         // add the ingredients and category to $products Collection
-        $this->addProductsListsCollection($products, ['ingredients', 'category']);
+        $this->addListsCollection($products, ['ingredients', 'category']);
 
         return Response::json($products ?: [
             'message' => 'no products founded to this board.',
