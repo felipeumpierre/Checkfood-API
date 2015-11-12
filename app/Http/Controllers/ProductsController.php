@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Extensions\ListsTrait;
 use App\Http\Requests;
 use App\Products;
-use App\Extensions\ProductsTrait;
 use Illuminate\Support\Facades\Response;
 use Symfony\Component\Debug\Exception\FatalErrorException;
 
 class ProductsController extends Controller
 {
-    use ProductsTrait;
+    use ListsTrait;
 
     /**
      * Get the product with ingredients and category
@@ -22,7 +22,7 @@ class ProductsController extends Controller
     {
         $products = Products::find($id);
 
-        $this->addProductLists($products, 'ingredients')->addProductLists($products, 'category');
+        $this->addLists($products, 'ingredients')->addLists($products, 'category');
 
         return Response::json($products ?: [
             'message' => 'error to find product. Check if is the correct product.',
@@ -57,7 +57,7 @@ class ProductsController extends Controller
     {
         $products = Products::all();
 
-        $this->addProductsListsCollection($products, ['ingredients', 'category']);
+        $this->addListsCollection($products, ['ingredients', 'category']);
 
         return Response::json($products);
     }
