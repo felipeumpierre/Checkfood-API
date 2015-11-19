@@ -7,10 +7,13 @@
  */
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'api'], function () {
+Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
     // Request
-    Route::post('/order/board/{id}', 'RequestsController@saveRequest');
-    Route::get('/order/board/{id}', 'RequestsController@showProductsFromBoard');
+    Route::get('/request/board/{id}', 'RequestsController@index');
+
+    // Order
+    Route::post('/order/board/{id}', 'OrderController@saveRequest');
+    Route::get('/order/board/{id}', 'OrderController@showProductsFromBoard');
 
     // Product
     Route::get('/product/{id}', 'ProductsController@index');
