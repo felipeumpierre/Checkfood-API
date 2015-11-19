@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Opinions;
 use Illuminate\Support\Facades\Response;
-use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Facades\Input;
 
 class OpinionsController extends Controller
 {
