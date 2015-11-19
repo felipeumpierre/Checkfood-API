@@ -2,53 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Extensions\ListsTrait;
-use App\Extensions\RequestsTrait;
-use App\Requests;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Response;
+use App\Boards;
 
 class RequestsController extends Controller
 {
-    use ListsTrait;
-    use RequestsTrait;
-
-    /**
-     * List the products from a board
-     *
-     * @param int $id board id
-     * @return json
-     */
-    public function showProductsFromBoard($id)
+    public function index($id)
     {
-        $products = Requests::where(['boards_id' => $id, 'status_id' => 1])->first();
+        $board = Boards::findOrFail($id);
 
-        if (is_null($products)) {
-            return Response::json(['message' => 'this board is not opened.']);
-        } else {
-            $products = $products->products()->get();
-        }
-
-        // add the ingredients and category to $products Collection
-        $this->addListsCollection($products, ['ingredients', 'category']);
-
-        return Response::json($products ?: [
-            'message' => 'no products founded to this board.',
-            'return' => null,
-        ]);
-    }
-
-    /**
-     * Create or just attach new products to a request
-     *
-     * @param $id
-     * @return json
-     */
-    public function saveRequest($id)
-    {
-        // decode the parameter
-        $products = json_decode(Input::get('products'));
-
-        return Response::json($this->request($id, $products));
+        dump($board);
     }
 }
