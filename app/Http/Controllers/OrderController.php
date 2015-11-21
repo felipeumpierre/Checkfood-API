@@ -21,16 +21,14 @@ class OrderController extends Controller
      */
     public function showProductsFromBoard($id)
     {
-        $products = Requests::where(['boards_id' => $id, 'status_id' => 1])->first();
+        $products = Requests::where(['boards_id' => $id, 'status_id' => 2])->first();
 
-        if (is_null($products)) {
-            return Response::json(['message' => 'this board is not opened.']);
-        } else {
+        if (!is_null($products)) {
             $products = $products->products()->get();
-        }
 
-        // add the ingredients and category to $products Collection
-        $this->addListsCollection($products, ['ingredients', 'category']);
+            // add the ingredients and category to $products Collection
+            $this->addListsCollection($products, ['ingredients', 'category']);
+        }
 
         return Response::json($products ?: [
             'message' => 'no products founded to this board.',
