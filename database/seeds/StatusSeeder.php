@@ -17,6 +17,7 @@ class StatusSeeder extends Seeder
 
         $fillable = [
             ['name' => 'Pendente', 'created_at' => Carbon\Carbon::now()],
+            ['name' => 'Aberto', 'created_at' => Carbon\Carbon::now()],
             ['name' => 'Em produção', 'created_at' => Carbon\Carbon::now()],
             ['name' => 'Atrasado', 'created_at' => Carbon\Carbon::now()],
             ['name' => 'Entregue', 'created_at' => Carbon\Carbon::now()],
