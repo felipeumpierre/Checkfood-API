@@ -24,4 +24,12 @@ class OpinionsController extends Controller
             ]);
         }
     }
+
+    public function listOpinions()
+    {
+        return Response::json(Opinions::all() ?: [
+            'message' => 'No opinions found.',
+            'return' => null,
+        ]);
+    }
 }
