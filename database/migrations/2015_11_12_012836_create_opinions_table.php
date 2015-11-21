@@ -12,7 +12,7 @@ class CreateOpinionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('opinion', function (Blueprint $table) {
+        Schema::create('opinions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('grade');
             $table->text('opinion');
@@ -27,6 +27,6 @@ class CreateOpinionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('opinion');
+        Schema::drop('opinions');
     }
 }
