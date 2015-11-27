@@ -79,6 +79,9 @@ trait RequestsTrait
         // Loop through the products array
         // attach to this request
         foreach ($products as $productKey => $productInformation) {
+            // cast to object
+            $productInformation = (object) $productInformation;
+
             // Search for the product
             // if not found, fail
             $product = Products::findOrFail($productInformation->id);
@@ -114,6 +117,9 @@ trait RequestsTrait
             if (empty($productInformation->observation) || is_null($productInformation->observation)) {
                 continue;
             }
+
+            // cast to object
+            $productInformation = (object) $productInformation;
 
             // Search for the product that was inserted in the function
             // @see attachProducts()
