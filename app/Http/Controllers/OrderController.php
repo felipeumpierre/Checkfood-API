@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Extensions\ListsTrait;
 use App\Extensions\RequestsTrait;
 use App\Requests;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
 class OrderController extends Controller
@@ -40,13 +40,11 @@ class OrderController extends Controller
      * Create or just attach new products to a request
      *
      * @param $id
+     * @param Request $request
      * @return json
      */
-    public function saveRequest($id)
+    public function saveRequest($id, Request $request)
     {
-        // decode the parameter
-        $products = json_decode(Input::get('products'));
-
-        return Response::json($this->request($id, $products));
+        return Response::json($this->request($id, $request->all()));
     }
 }

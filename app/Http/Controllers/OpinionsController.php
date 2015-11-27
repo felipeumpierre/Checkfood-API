@@ -4,19 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Opinions;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Input;
 
 class OpinionsController extends Controller
 {
-    public function add()
+    public function add(Request $request)
     {
-        $opinion = json_decode(Input::get('opinion'));
+        $requests = (object) $request->all();
 
         try {
-            $newOpinion = new Opinions($opinion);
+            $opinion = new Opinions();
+            $opinion->grade = $requests->grade;
+            $opinion->opinion = $requests->opinion;
+            $opinion->save();
 
-            return Response::json($newOpinion);
+            return Response::json([
+                'message' => 'Opinion saved with success.',
+                'return' => 1,
+            ]);
         } catch (\Exception $e) {
             return Response::json([
                 'message' => 'error to save opinion. Try again.',
